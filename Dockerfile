@@ -7,7 +7,7 @@ WORKDIR $ZOOKEEPER_HOME
 
 ENV ZOOKEEPER_TGZ_KEYS http://www-us.apache.org/dist/zookeeper/KEYS
 
-RUN set -x                                                                \
+RUN set -x                                                                 \
 	&& curl -SL "$ZOOKEEPER_TGZ_KEYS" -o KEYS                          \
 	&& gpg --import KEYS                                               \
 	&& rm -f KEYS
