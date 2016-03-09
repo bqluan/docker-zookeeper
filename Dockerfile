@@ -13,12 +13,11 @@ RUN set -x                                                                 \
 	&& rm -f KEYS
 
 ENV ZOOKEEPER_VERSION 3.4.8
-ENV ZOOKEEPER_TGZ http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz
-ENV ZOOKEEPER_TGZ_ASC http://www-us.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz.asc
+ENV ZOOKEEPER_TGZ http://www-us.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz
 
 RUN set -x                                                                 \
 	&& curl -SL "$ZOOKEEPER_TGZ" -o zookeeper.tar.gz                   \
-	&& curl -SL "$ZOOKEEPER_TGZ_ASC" -o zookeeper.tar.gz.asc           \
+	&& curl -SL "$ZOOKEEPER_TGZ.asc" -o zookeeper.tar.gz.asc           \
 	&& gpg --batch --verify zookeeper.tar.gz.asc zookeeper.tar.gz      \
 	&& tar -xzf zookeeper.tar.gz --strip-components=1                  \
 	&& mkdir data                                                      \
